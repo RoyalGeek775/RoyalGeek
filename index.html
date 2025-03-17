@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="handleLogin()">Login</button>
+        <p class="error" id="login-error"></p>
+        <button onclick="showSignUp()">Sign Up</button>
+        <button onclick="showForgotPassword()">Forgot Password?</button>
+    </div>
+
+    <div class="container" id="signup-container" style="display: none;">
+        <h2>Sign Up</h2>
+        <input type="email" id="signup-email" placeholder="Email">
+        <input type="password" id="signup-password" placeholder="Password">
+        <input type="text" id="signup-security-question" placeholder="Security Question">
+        <input type="text" id="signup-security-answer" placeholder="Security Answer">
+        <button onclick="handleSignUp()">Sign Up</button>
+        <button onclick="showLogin()">Login</button>
+    </div>
+
+    <div class="container" id="forgot-password-container" style="display: none;">
+        <h2>Forgot Password</h2>
+        <input type="email" id="forgot-password-email" placeholder="Email">
+        <input type="text" id="forgot-password-security-answer" placeholder="Security Answer">
+        <input type="password" id="forgot-password-new-password" placeholder="New Password">
+        <button onclick="handleForgotPassword()">Reset Password</button>
+        <p class="error" id="forgot-password-error"></p>
+        <button onclick="showLogin()">Login</button>
+    </div>
+
+    <script>
+        const users = [];
+
+        function saveUser(user) {
+            users.push(user);
+        }
+
+        function validateUser(email, password) {
+            return users.find(user => user.email === email && user.password === password);
+        }
+
+        function validateSecurityAnswer(email, securityAnswer) {
+            const user = users.find(user => user.email === email && user.securityAnswer === securityAnswer);
+            return !!user;
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const user = validateUser(email, password);
+            if (user) {
+                alert('Login successful!');
+            } else {
+                document.getElementById('login-error').innerText = 'Invalid email or password';
+            }
+        }
+
+        function handleSignUp() {
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const securityQuestion = document.getElementById('signup-security-question').value;
+            const securityAnswer = document.getElementById('signup-security-answer').value;
+            saveUser({ email, password, securityQuestion, securityAnswer });
+            alert('Sign up successful!');
+            showLogin();
+        }
+
+        function handleForgotPassword() {
+            const email = document.getElementById('forgot-password-email').value;
+            const securityAnswer = document.getElementById('forgot-password-security-answer').value;
+            const newPassword = document.getElementById('forgot-password-new-password').value;
+            const isValid = validateSecurityAnswer(email, securityAnswer);
+            if (isValid) {
+                const user = users.find(user => user.email === email);
+                user.password = newPassword;
+                alert('Password reset successful!');
+                showLogin();
+            } else {
+                document.getElementById('forgot-password-error').innerText = 'Invalid security answer';
+            }
+        }
+
+        function showLogin() {
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('signup-container').style.display = 'none';
+            document.getElementById('forgot-password-container').style.display = 'none';
+        }
+
+        function showSignUp() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('signup-container').style.display = 'block';
+            document.getElementById('forgot-password-container').style.display = 'none';
+        }
+
+        function showForgotPassword() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('signup-container').style.display = 'none';
+            document.getElementById('forgot-password-container').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
