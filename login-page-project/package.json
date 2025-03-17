@@ -21,10 +21,10 @@
     "password recovery",
     "react"
   ],
-  "author": "Your Name",
+  "author": "RoyalGeek775",
   "license": "MIT"
 }
-"homepage": "https://<your-username>.github.io/<your-repo-name>",
+"homepage": "https://RoyalGeek775.github.io/RoyalGeek",
 "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
