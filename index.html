@@ -5,49 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page Project</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: #f5f5f5;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
         }
+
         .container {
             background-color: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
             text-align: center;
+            animation: fadeIn 1s ease-in-out;
         }
+
         input {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
         }
+
+        input:focus {
+            border-color: #6e8efb;
+        }
+
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+            padding: 15px;
+            background-color: #6e8efb;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s;
         }
+
         button:hover {
-            background-color: #0056b3;
+            background-color: #a777e3;
+            transform: translateY(-2px);
         }
+
         .error {
             color: red;
             margin-top: 10px;
         }
+
+        .typewriter {
+            font-size: 24px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid white;
+            width: 0;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
+    <div class="typewriter">Welcome to Our Premium Web Application</div>
+
     <div class="container" id="login-container">
         <h2>Login</h2>
         <input type="email" id="login-email" placeholder="Email">
