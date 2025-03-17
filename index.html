@@ -34,11 +34,10 @@
         }
 
         .typewriter {
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
             white-space: nowrap;
             overflow: hidden;
             border-right: 3px solid white;
-            width: 0;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
         }
 
         @keyframes typing {
@@ -94,6 +93,23 @@
             transform: translateY(-2px);
         }
 
+        .small-button {
+            width: auto;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #6e8efb;
+            border: 1px solid #6e8efb;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .small-button:hover {
+            background-color: #6e8efb;
+            color: white;
+        }
+
         .error {
             color: red;
             margin-top: 10px;
@@ -117,7 +133,7 @@
         <button onclick="handleLogin()">Login</button>
         <p class="error" id="login-error"></p>
         <button onclick="showSignUp()">Sign Up</button>
-        <button onclick="showForgotPassword()">Forgot Password?</button>
+        <button class="small-button" onclick="showForgotPassword()">Forgot Password?</button>
     </div>
 
     <div class="container" id="signup-container" style="display: none;">
