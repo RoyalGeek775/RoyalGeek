@@ -142,9 +142,28 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: moveBackground 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+            100% { transform: translate(0, 0); }
+        }
     </style>
 </head>
 <body>
+    <div class="background-animation"></div>
+
     <div class="logo-container">
         <img src="https://i.ibb.co/FqNjTk1F/Screenshot-2025-03-17-115355.png" alt="Company Logo" class="logo">
     </div>
@@ -155,8 +174,10 @@
 
     <div class="container" id="login-container">
         <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email">
-        <input type="password" id="login-password" placeholder="Password">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <input type="email" id="login-email" placeholder="Email">
+            <input type="password" id="login-password" placeholder="Password">
+        </div>
         <button onclick="handleLogin()">Login</button>
         <p class="error" id="login-error"></p>
         <button onclick="showSignUp()">Sign Up</button>
@@ -172,14 +193,16 @@
             <input type="text" id="signup-security-answer" placeholder="Security Answer">
         </div>
         <button onclick="handleSignUp()">Sign Up</button>
-        <button onclick="showLogin()">Login</button>
+        <button style="margin-top: 10px;" onclick="showLogin()">Login</button> <!-- Added space between buttons -->
     </div>
 
     <div class="container" id="forgot-password-container" style="display: none;">
         <h2>Forgot Password</h2>
-        <input type="email" id="forgot-password-email" placeholder="Email">
-        <input type="text" id="forgot-password-security-answer" placeholder="Security Answer">
-        <input type="password" id="forgot-password-new-password" placeholder="New Password">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <input type="email" id="forgot-password-email" placeholder="Email">
+            <input type="text" id="forgot-password-security-answer" placeholder="Security Answer">
+            <input type="password" id="forgot-password-new-password" placeholder="New Password">
+        </div>
         <button onclick="handleForgotPassword()">Reset Password</button>
         <p class="error" id="forgot-password-error"></p>
         <button onclick="showLogin()">Login</button>
