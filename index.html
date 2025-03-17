@@ -165,10 +165,12 @@
 
     <div class="container" id="signup-container" style="display: none;">
         <h2>Sign Up</h2>
-        <input type="email" id="signup-email" placeholder="Email">
-        <input type="password" id="signup-password" placeholder="Password">
-        <input type="text" id="signup-security-question" placeholder="Security Question">
-        <input type="text" id="signup-security-answer" placeholder="Security Answer">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <input type="email" id="signup-email" placeholder="Email">
+            <input type="password" id="signup-password" placeholder="Password">
+            <input type="text" id="signup-security-question" placeholder="Security Question">
+            <input type="text" id="signup-security-answer" placeholder="Security Answer">
+        </div>
         <button onclick="handleSignUp()">Sign Up</button>
         <button onclick="showLogin()">Login</button>
     </div>
